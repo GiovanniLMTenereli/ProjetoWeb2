@@ -1,3 +1,11 @@
+export interface Employee {
+    id: number;
+    name: string;
+    position: string;
+    // Adicione a propriedade `userType`:
+    userType: 'customer' | 'employee';
+  }
+
 export class Employee {
 
     constructor(
