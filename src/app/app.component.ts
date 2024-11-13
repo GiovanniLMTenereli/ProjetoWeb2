@@ -4,6 +4,7 @@ import { provideRouter, RouterOutlet } from '@angular/router';
 import { LoginComponent } from './components/customer/pages/login/login.component';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { routes } from './app.routes';
+import { provideNgxMask } from 'ngx-mask';
 
 @Component({
   selector: 'app-root',
@@ -17,5 +18,5 @@ export class AppComponent {
 }
 
 bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes)],
+  providers: [provideRouter(routes), provideNgxMask()],
 });

@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { CommonModule } from '@angular/common';
 import { RequestStatus } from '../../../../models/enums/requestStatus';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 
 @Component({
   selector: 'app-make-budget',
   standalone: true,
-  imports: [EmployeeSidebarComponent, FormsModule, CommonModule],
+  imports: [EmployeeSidebarComponent, FormsModule, CommonModule, NgxMaskDirective, NgxMaskPipe],
   templateUrl: './make-budget.component.html',
   styleUrl: './make-budget.component.css'
 })
