@@ -5,10 +5,10 @@ export interface BudgetRequest{
   valorOrcamento: Number,
   aprovado: boolean,
   rejeitado: boolean,
-  motivoRejeicao: String,
-  dataHoraRejeicao: Date,
+  motivoRejeicao: String|null,
+  dataHoraRejeicao: Date|null,
   dataHoraCriacao: Date,
-  dataHoraAprovacao: Date,
+  dataHoraAprovacao: Date|null,
   idFuncionario: Number,
   nomeFuncionario: String,
   solicitacao: SolicitacaoRequest

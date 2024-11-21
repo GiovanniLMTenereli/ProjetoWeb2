@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { MaintenceRequest } from '../../../../models/mainteceRequest';
 import { CommonModule } from '@angular/common';
 import { RequestStatus } from '../../../../models/enums/requestStatus';
+import { BudgetService } from '../../../../services/budget/budget.service';
+import { estadoSolicitacao, SolicitacaoRequest } from '../../../../models/solicitacaoRequest';
 
 @Component({
   selector: 'app-make-budget',
@@ -17,9 +19,9 @@ import { RequestStatus } from '../../../../models/enums/requestStatus';
 export class MakeBudgetComponent implements OnInit {
   valorOrcamento: number = 0.00;
   descricaoOrcamento: string = '';
-  request: MaintenceRequest | null = null;
+  request: SolicitacaoRequest | null = null;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private BudgetService: BudgetService) {}
 
   ngOnInit(): void {
     const navigation = this.router.lastSuccessfulNavigation;
@@ -34,8 +36,13 @@ export class MakeBudgetComponent implements OnInit {
 
   confirmBudget(descricao: string): void {
     this.descricaoOrcamento = descricao;
+    var estado:estadoSolicitacao = {
+      descricao: 'Orçada',
+      id: 2,
+    }
     if (this.request) {
-      this.request.status = RequestStatus.Budgeted;
+      this.request.estadoSolicitacao = estado;
+      this.BudgetService.newBudget(this.request, this.valorOrcamento, this.descricaoOrcamento);
       console.log("Solicitação orçada com o valor: " + this.valorOrcamento + " - Descrição: " + this.descricaoOrcamento);
     }
   }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BudgetRequest } from '../../models/budgetRequest';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { MaintenceRequest } from '../../models/mainteceRequest';
 import { SolicitacaoRequest } from '../../models/solicitacaoRequest';
 
 @Injectable({
@@ -27,6 +28,31 @@ export class BudgetService {
  getOrcamentoBySolicitacaoId(idSolic: number): Observable<BudgetRequest> {
   return this.http.get<any>(`${this.BASE_URL_ORCAMENTO_BY_SOLICTACAO_ID}/${idSolic}`, this.httpOptions);
 }
+
+newBudget(request: SolicitacaoRequest, value: number, description: string){
+  var budget: BudgetRequest =
+  {
+    idOrcamento: 0,
+    valorOrcamento: value,
+    aprovado: false,
+    rejeitado: false,
+    motivoRejeicao: '',
+    dataHoraRejeicao: null,
+    dataHoraCriacao: new Date,
+    dataHoraAprovacao: null,
+    idFuncionario: 0,
+    nomeFuncionario: '',
+    solicitacao: request
+  };
+
+  this.insert(budget);
+}
+
+insert(budget: BudgetRequest): Observable<BudgetRequest|null> {
+  return this.http.post<BudgetRequest>(this.BASE_URL,
+    JSON.stringify(budget),
+    this.httpOptions);
+};
 
 
 aprovarOrcamento(id : Number): Observable<any>{

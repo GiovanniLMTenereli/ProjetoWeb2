@@ -35,7 +35,7 @@ interface Endereco{
     lagradouro: String,
     numero: Number
 }
-interface estadoSolicitacao{
+export interface estadoSolicitacao{
     descricao: String,
     id: Number,
 
